@@ -83,16 +83,6 @@ function cd {
 #    fi
 }
 
-
-function pip() {
-    if [[ "$1" == "install" ]]; then
-        shift 1
-        command pip install --no-cache-dir -U "$@"
-    else
-        command pip "$@"
-    fi
-}
-
 git_branch () {
     # Get current Git branch
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
