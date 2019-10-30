@@ -1,7 +1,7 @@
 FROM kalilinux/kali-linux-docker
 
 RUN apt update && apt upgrade -y \
-    && apt install -y vim net-tools recon-ng masscan nikto nmap smbmap \
+    && apt install -y vim net-tools dnsutils recon-ng masscan nikto nmap smbmap \
         sqlmap metasploit-framework veil burpsuite dirb \
         hurl wfuzz whatweb wpscan zaproxy binwalk libimage-exiftool-perl \
         responder cewl patator netcat socat weevely jd-gui python3-impacket \
