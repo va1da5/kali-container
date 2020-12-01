@@ -2,11 +2,15 @@ alias http-server='python3 -m http.server'
 alias smb-server='impacket-smbserver'
 alias ftp-server='twistd -n ftp -r .'
 alias git-save='git add -A && git commit -m "Quick Save - $(date --iso-8601=seconds)" && git push'
+
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+
 alias ls='ls --color=auto'
-alias ll='ls -la'
+alias ll='ls -lh'
+alias la='ls -lha'
+alias lt='du -sh * | sort -h'
 
 # ---
 
@@ -28,34 +32,31 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias lh='ls -lh'
-
+alias ve='python3 -m venv ./.venv'
+alias va='source ./.venv/bin/activate'
+alias pipf='pip freeze > requirements.txt'
+alias pipr='pip install -r requirements.txt'
 
 # Apt
 alias update='sudo apt -y update'
 alias upgrade='sudo apt-get -y update && sudo apt-get -y --allow-unauthenticated upgrade && sudo apt-get autoclean && sudo apt-get autoremove && exit 0'
 alias search='sudo apt search'
-alias links='links2'
+
 # Install and Remove Packages
 alias install='sudo apt-get -y install'
 alias uninstall='sudo apt-get --purge autoremove '
 alias search-installed='sudo dpkg --get-selections '
 
-alias lsdir='ls -ld */'
-alias paux='ps aux | grep'
-alias cd.='cd ..'
 alias ..='cd ..'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
-alias .....='cd ../../../../'
-alias .4='cd ../../../../'
-alias .5='cd ../../../../..'
-alias cd..='cd ..'
-
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 # Useful Alias
 alias CD='cd'
+
+alias ipe='curl ifconfig.me'
+
+alias untar='tar -zxvf'
+alias wget='wget -c'
+
+alias cpv='rsync -ah --info=progress2'

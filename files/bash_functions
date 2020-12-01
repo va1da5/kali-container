@@ -1,40 +1,6 @@
-# Useful Function
-function deactivate-node-env {
-    node_path=$(echo $PATH | tr ":" "\n" | grep node_modules)
-    if [ ! -z "$node_path" ]
-    then
-        PATH=$(echo $PATH | sed -e "s^:$node_path^^")
-        PS1="${PS1#'(node-env) '}"
-    fi
-}
-
-function activate-node-env {
-    PATH="$PATH:$(pwd)/node_modules/.bin"
-    PS1="(node-env) $PS1"
-    export -f deactivate-node-env
-}
-
-function commiter() {
-    # Add file, commit and push
-    git add -f "$1";
-    if [ "$2" == "" ]; then
-        git commit -m"Updated $1";
-    else
-        git commit -m"$2";
-    fi;
-    $(git push -q >> /dev/null 2>&1) &
-    }
-
-
-function ssh() {
-    # Always ssh with -X
-    command ssh -X "$@"
-}
-
 function rsync(){
     command rsync --progress "$@"
 }
-
 
 function extract () {
      if [ -f $1 ] ; then
@@ -57,7 +23,6 @@ function extract () {
      fi
 }
 
-
 function psgrep() {
     if [ ! -z $1 ] ; then
         echo "Grepping for processes matching $1..."
@@ -67,21 +32,60 @@ function psgrep() {
     fi
 }
 
-function cd {
-    # The 'builtin' keyword allows you to redefine a Bash builtin without
-    # creating a recursion. Quoting the parameter makes it work in case there are spaces in
-    # directory names.
-    builtin cd "$@"
-#    if [ "$PWD" == "$YOCTODIR" ] ;
-#        then
-#            bash $YOCTODIR/.source_yocto
-#    elif [ "$PWD" == "$PETADIR" ] ;
-#        then
-#            bash $PETADIR/.source_petalinux
-#    else
-        ls -thor ;
-#    fi
+function stringify {
+  local input="$@"
+  
+  input="${input//\"/\\\"}"
+  input="${input//\\/\\\\}"
+  input="${input// /+}"
+
+  echo "${input}"
 }
+
+# find help on cheat.sh
+function help {
+  curl "cheat.sh/$(stringify $@)"
+}
+
+function cd() {
+    builtin cd "$@" && ls -lh
+}
+
+function mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+function getpass() {
+    if [ -n "$1" ]; then 
+        openssl rand -base64 $1
+    else 
+        openssl rand -base64 20
+    fi
+}
+
+function uuid() {
+ local N B C='89ab'
+for (( N=0; N < 16; ++N ))
+ do
+  B=$(( $RANDOM%256 ))
+case $N in
+   6)
+    printf '4%x' $(( B%16 ))
+    ;;
+   8)
+    printf '%c%x' ${C:$RANDOM%${#C}:1} $(( B%16 ))
+    ;;
+   3 | 5 | 7 | 9)
+    printf '%02x-' $B
+    ;;
+   *)
+    printf '%02x' $B
+    ;;
+  esac
+ done
+echo
+}
+
 
 git_branch () {
     # Get current Git branch

@@ -24,20 +24,20 @@ function stop {
 }
 
 case "$1" in
-        start)
-            start
-            ;;
-        stop)
-            stop
-            ;;
-        exec)
-            shift;
-            docker exec kali-docker "$@"
-            ;;
-        attach)
-            docker exec -it kali-docker /bin/bash
-            ;;
-        *)
-            echo $"Usage: $0 {start|stop|exec|attach|status}"
-            exit 1
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    exec)
+        shift;
+        docker exec kali-docker "$@"
+        ;;
+    attach)
+        docker exec -it kali-docker /bin/bash
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|exec|attach|status}"
+        exit 1
 esac
