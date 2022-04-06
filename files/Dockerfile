@@ -4,7 +4,7 @@ RUN apt update && apt upgrade -y \
     && apt install -y vim net-tools dnsutils masscan nikto nmap \
     sqlmap metasploit-framework burpsuite dirb tcpdump \
     hurl wfuzz whatweb binwalk libimage-exiftool-perl \
-    cewl patator netcat socat jd-gui wordlists recon-ng \
+    cewl patator pwncat socat jd-gui wordlists recon-ng \
     python3-venv nodejs npm jq jython gobuster seclists \
     veil wpscan zaproxy responder smbmap weevely python3-impacket \
     proxychains \
