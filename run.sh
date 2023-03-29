@@ -6,12 +6,14 @@ function start {
     dirname=${PWD##*/}
     docker run -it --rm \
         --entrypoint=/bin/bash \
-        --env DISPLAY=unix$DISPLAY \
+        --env "DISPLAY" \
         --volume /opt:/opt \
-        --volume /tmp/.X11-unix:/tmp/.X11-unix \
+        --volume $XAUTHORITY:$XAUTHORITY:ro \
+        --volume "/tmp/.X11-unix:/tmp/.X11-unix:ro" \
         --volume "${PWD}:/${dirname}" \
         --workdir "/${dirname}" \
         --network host \
+        --security-opt label=type:container_runtime_t \
         $USER/kali
 }
 
