@@ -5,18 +5,25 @@ ENV JAVA_FONTS /usr/share/fonts/truetype
 
 RUN apt update && apt upgrade -y \
     && apt install -y \
+    binutils \
+    binwalk \
     burpsuite \
     cewl \
     curl \
     dirb \
     dnsutils \
     ffuf \
+    gdb \
+    ghidra \
     git \
     gobuster \
     hurl \
+    jadx \
+    jd-gui \
     jq \
     jython \
     libimage-exiftool-perl \
+    ltrace \
     make \
     masscan \
     metasploit-framework \
@@ -35,6 +42,7 @@ RUN apt update && apt upgrade -y \
     smbmap \
     socat \
     sqlmap \
+    strace \
     tcpdump \
     tmux \
     veil \
@@ -60,7 +68,6 @@ RUN apt update && apt upgrade -y \
     && sh -c 'echo n | ZSH=/etc/zsh/oh-my-zsh sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"' \ 
     && usermod -s /usr/bin/zsh root \
     && touch ~/.hushlogin
-
 
 COPY aliases /etc/zsh/aliases
 COPY zshrc /etc/zsh/zshrc

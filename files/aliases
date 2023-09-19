@@ -1,0 +1,121 @@
+export W_SECLISTS="/usr/share/wordlists/seclists"
+export W_DIRB="/usr/share/wordlists/dirb"
+
+export W_DIRB_BIG_20K="${W_DIRB}/big.txt"
+export W_DANGEROUS_FILES_4K="${W_SECLISTS}/Fuzzing/fuzz-Bo0oM.txt"
+export W_COMMON_WEB_FILES_4K="${W_SECLISTS}/Discovery/Web-Content/common.txt"
+export W_BURP_PARAMETERS_2K="${W_SECLISTS}/Discovery/Web-Content/burp-parameter-names.txt"
+export W_QUICK_HITS_2K="${W_SECLISTS}/Discovery/Web-Content/quickhits.txt"
+export W_FULL_ASCII_94="${W_SECLISTS}/Fuzzing/alphanum-case-extra.txt"
+export W_COMMON_EXTENSIONS="${W_SECLISTS}/Fuzzing/extensions-most-common.fuzz.txt"
+export W_SSTI="${W_SECLISTS}/Fuzzing/template-engines-expression.txt"
+
+alias http-server='python3 -m http.server'
+alias smb-server='impacket-smbserver'
+alias ftp-server='twistd -n ftp -r .'
+alias git-save='git add -A && git commit -m "Quick Save - $(date --iso-8601=seconds)" && git push'
+
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias ls='ls --color=auto'
+alias ll='ls -lh'
+alias la='ls -lha'
+alias lt='du -sh * | sort -h'
+alias ltr='ls -ltr'
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+alias venv='python3 -m venv ./.venv'
+alias va='source ./.venv/bin/activate'
+alias pipf='pip freeze > requirements.txt'
+alias pipr='pip install -r requirements.txt'
+
+# Apt
+alias update='apt -y update'
+alias upgrade='apt-get -y update && apt-get -y --allow-unauthenticated upgrade && apt-get autoclean && apt-get autoremove && exit 0'
+alias search='apt search'
+
+# Install and Remove Packages
+alias install='apt-get -y install'
+alias uninstall='apt-get --purge autoremove '
+alias search-installed='dpkg --get-selections '
+
+# Useful Alias
+alias CD='cd'
+alias dc='cd'
+
+alias ipe='curl ifconfig.me'
+
+alias untar='tar -zxvf'
+alias wget='wget -c'
+
+alias cpv='rsync -ah --info=progress2'
+
+function cd() {
+    builtin cd "$@" && ls -lh
+}
+
+function mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# stringify wraps all arguments in quotes.
+function stringify {
+    local input="$@"
+
+    input="${input//\"/\\\"}"
+    input="${input//\\/\\\\}"
+    input="${input// /+}"
+
+    echo "${input}"
+}
+
+# find help on cheat.sh
+function help {
+    curl "cheat.sh/$(stringify $@)"
+}
+
+function uuid() {
+    local N B C='89ab'
+    for ((N = 0; N < 16; ++N)); do
+        B=$(($RANDOM % 256))
+        case $N in
+        6)
+            printf '4%x' $((B % 16))
+            ;;
+        8)
+            printf '%c%x' ${C:$RANDOM%${#C}:1} $((B % 16))
+            ;;
+        3 | 5 | 7 | 9)
+            printf '%02x-' $B
+            ;;
+        *)
+            printf '%02x' $B
+            ;;
+        esac
+    done
+    echo
+}
+
+function gitignore() {
+    URL="https://www.toptal.com/developers/gitignore/api/$(stringify $@)"
+    STATUSCODE=$(curl --silent --location --output .gitignore-tmp --write-out "%{http_code}" $URL)
+
+    if test $STATUSCODE -ne 200; then
+        echo ".gitignore for '$@' is not available. See more at https://github.com/github/gitignore"
+        rm -rf .gitignore-tmp
+        return 1
+    fi
+    cat .gitignore-tmp >>.gitignore
+    rm -rf .gitignore-tmp
+}
+
