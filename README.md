@@ -64,7 +64,7 @@ If you ever need to start fresh or reset the configuration, you can simply delet
 - [zaproxy](https://www.kali.org/tools/zaproxy/)
 - [zsh](https://www.kali.org/tools/zsh/)
 
-## Reversing
+## Binary Reversing
 
 - All from the default build
 - Support for 32-bit binary executables
