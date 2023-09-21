@@ -8,9 +8,9 @@ Please feel free to modify the tools listed in the [Dockerfile](./files/Dockerfi
 
 ## Persistance
 
-Certain tools, such as BurpSuite proxy, require a persistence layer to maintain their settings and configurations between runs. To accommodate this, a dedicated volume `kali` is created for the Kali container, specifically mapping to the `/root` directory which serves as the home directory for the container user. By doing this, your tool's configuration will persist across individual runs, allowing you to pick up where you left off.
+Certain tools, such as BurpSuite proxy, require a persistence layer to maintain their settings and configurations between runs. To accommodate this, a dedicated volume `kali_root` is created for the Kali container, specifically mapping to the `/root` directory which serves as the home directory for the container user. By doing this, your tool's configuration will persist across individual runs, allowing you to pick up where you left off.
 
-If you ever need to start fresh or reset the configuration, you can simply delete the `kali` container volume. This will remove all the stored data associated with the user, effectively resetting it to its default state.
+If you ever need to start fresh or reset the configuration, you can simply delete the `kali_root` container volume. This will remove all the stored data associated with the user, effectively resetting it to its default state.
 
 ## Requirements
 
