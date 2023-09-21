@@ -67,13 +67,19 @@ If you ever need to start fresh or reset the configuration, you can simply delet
 ## Reversing
 
 - All from the default build
+- Support for 32-bit binary executables
 - [binutils](https://www.gnu.org/software/binutils/)
 - [binwalk](https://www.kali.org/tools/binwalk/)
+- [gdb](https://www.kali.org/tools/gdb/)
+- [gef](https://github.com/hugsy/gef)
+- [ghidra](https://www.kali.org/tools/ghidra/)
+- [imhex](https://www.kali.org/tools/imhex/)
 - [jadx](https://www.kali.org/tools/jadx/)
 - [jd-gui](https://www.kali.org/tools/jd-gui/)
-- [gdb](https://www.kali.org/tools/gdb/)
-- [ghidra](https://www.kali.org/tools/ghidra/)
 - [ltrace](https://man7.org/linux/man-pages/man1/ltrace.1.html)
+- [pwntools](https://docs.pwntools.com/en/stable/)
+- [rizin-cutter](https://www.kali.org/tools/rizin-cutter/)
+- [rz-ghidra](https://www.kali.org/tools/rz-ghidra/)
 - [strace](https://man7.org/linux/man-pages/man1/strace.1.html)
 
 ## Build Container Image

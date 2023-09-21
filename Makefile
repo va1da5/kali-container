@@ -7,8 +7,8 @@ help:
 
 .PHONY: build
 build:
-	docker build -t $$USER/kali --file Dockerfile files
-# --no-cache 
+	docker build --no-cache -t $$USER/kali --file Dockerfile files
+
 
 
 .PHONY: build+reversing

@@ -18,6 +18,7 @@ RUN apt update && apt upgrade -y \
     git \
     gobuster \
     hurl \
+    imhex \
     jadx \
     jd-gui \
     jq \
@@ -35,9 +36,13 @@ RUN apt update && apt upgrade -y \
     proxychains \
     pwncat \
     python3-impacket \
+    python3-pip \
+    python3-pwntools \
     python3-venv \
     recon-ng \
     responder \
+    rizin-cutter \
+    rz-ghidra \
     seclists \
     smbmap \
     socat \
@@ -55,6 +60,8 @@ RUN apt update && apt upgrade -y \
     zaproxy \
     zsh \
     \
+    gcc-multilib \
+    \
     && apt-get -y clean && apt-get -y autoremove \
     && rm -rf /var/lib/apt/lists/* \
     \
@@ -65,6 +72,7 @@ RUN apt update && apt upgrade -y \
     && ln -s /usr/share/impacket/script /usr/bin/impacket-smbexec \
     && ln -s /usr/share/impacket/script /usr/bin/impacket-GetADUsers \
     \
+    && sh -c "$(curl -fsSL https://gef.blah.cat/sh)" \
     && sh -c 'echo n | ZSH=/etc/zsh/oh-my-zsh sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"' \ 
     && usermod -s /usr/bin/zsh root \
     && touch ~/.hushlogin

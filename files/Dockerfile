@@ -28,6 +28,7 @@ RUN apt update && apt upgrade -y \
     proxychains \
     pwncat \
     python3-impacket \
+    python3-pip \
     python3-venv \
     recon-ng \
     responder \
