@@ -23,4 +23,13 @@ function start {
         $USER/kali
 }
 
-start
+function attach {
+    docker exec -it $(docker ps -q -n 1 --filter "ancestor=kali:latest") zsh
+}
+
+ATTACH="kali-attach"
+if [[ "$0" == *"$ATTACH"* ]]; then
+    attach
+else
+    start
+fi

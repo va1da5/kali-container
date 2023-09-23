@@ -3,7 +3,7 @@ help:
 	@echo "Usage: make [target]"
 	@echo "Available targets:"
 	@echo "build               - build Kali container image"
-	@echo "deploy              - creates a symlinc to the run.sh script"	
+	@echo "deploy              - creates a symlinc to the run.sh script"
 
 .PHONY: build
 build:
@@ -18,4 +18,6 @@ build+reversing:
 
 .PHONY: deploy
 deploy:
+	sudo rm -rf /usr/local/bin/kali-here /usr/local/bin/kali-attach
 	sudo ln -s "$$PWD/run.sh" "/usr/local/bin/kali-here"
+	sudo ln -s "$$PWD/run.sh" "/usr/local/bin/kali-attach"

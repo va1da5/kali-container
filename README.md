@@ -85,7 +85,7 @@ If you ever need to start fresh or reset the configuration, you can simply delet
 ## Build Container Image
 
 - Run `make build` to create Kali container image. The image `$USER/kali` will take ~8GB of space once built. `make build+reversing` for building Kali container image with reversing tools.
-- Run `make deploy` to setup a symbolic link from `run.sh` to the `/usr/local/bin/kali-here`.
+- Run `make deploy` to setup a symbolic link from `run.sh` to the `/usr/local/bin/kali-here` and `/usr/local/bin/kali-attach`.
 
 ## Usage
 
@@ -96,8 +96,10 @@ If you ever need to start fresh or reset the configuration, you can simply delet
 # or
 kali-here
 
-# attach to an already running container
-docker exec -it $(docker ps | grep kali:latest | awk '{print $NF}') zsh
+# attach to the latest created Kali container
+docker exec -it $(docker ps -q -n 1 --filter "ancestor=kali:latest") zsh
+# or
+kali-attach
 ```
 
 ## Reference
