@@ -2,8 +2,8 @@
 help:
 	@echo "Usage: make [target]"
 	@echo "Available targets:"
-	@echo "build               - build Kali container image"
-	@echo "deploy              - creates a symlinc to the run.sh script"
+	@echo "build               - builds Kali container image"
+	@echo "deploy              - creates a symlink to the run.sh script"
 
 .PHONY: build
 build:

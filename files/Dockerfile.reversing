@@ -37,7 +37,6 @@ RUN apt update && apt upgrade -y \
     pwncat \
     python3-impacket \
     python3-pip \
-    python3-pwntools \
     python3-venv \
     recon-ng \
     responder \
@@ -66,6 +65,8 @@ RUN apt update && apt upgrade -y \
     && rm -rf /var/lib/apt/lists/* \
     \
     && npm install -g ngrok \
+    && pip3 install -U pip \
+    && pip3 install -U pwntools \
     \
     && ln -s /usr/share/impacket/script /usr/bin/impacket-smbserver \
     && ln -s /usr/share/impacket/script /usr/bin/impacket-wmipersist \
