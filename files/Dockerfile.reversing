@@ -65,8 +65,9 @@ RUN apt update && apt upgrade -y \
     && rm -rf /var/lib/apt/lists/* \
     \
     && npm install -g ngrok \
-    && pip3 install -U pip \
-    && pip3 install -U pwntools \
+    && pip3 install -U uv --break-system-packages \
+    && pip3 install setuptools --break-system-packages \
+    && pip3 install pwntools --break-system-packages \
     \
     && ln -s /usr/share/impacket/script /usr/bin/impacket-smbserver \
     && ln -s /usr/share/impacket/script /usr/bin/impacket-wmipersist \
